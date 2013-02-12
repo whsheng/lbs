@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:background="#ffffffff"
+	android:id="@+id/loginmain">
+	<!--#D6E4E8   #d5d3d6-->
+	
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="50dp"
+		android:background="@drawable/bar_title_shadow"
+		>
+
+	    <TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="奥发GPS"
+			android:gravity="center"
+			android:textColor="#ffffffff"
+			style="@style/title"
+			android:layout_centerInParent="true">
+		</TextView>
+	    
+
+	</RelativeLayout>
+	
+
+	
+	<LinearLayout 
+            style="@style/leftright20"
+     		android:layout_marginTop="30dp"
+	    >
+	     <TextView
+		 android:layout_width="fill_parent"
+	     android:layout_height="wrap_content"
+	     android:id="@+id/txtAddress"
+	     style="@style/listTitle"
+	     android:hint="地址描述"
+		/>
+	    
+	    
+	    	    <LinearLayout
+	    android:layout_height="wrap_content"
+   		android:layout_width="fill_parent"
+   		android:orientation="horizontal"
+   		android:gravity="center"
+		android:layout_gravity="center"
+		android:layout_marginTop="15dp"
+	    >
+	    <TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="IMEI:"
+	    style="@style/listTitle"
+	    >
+	    </TextView>
+	    
+	 <TextView
+		 android:layout_width="fill_parent"
+	     android:layout_height="wrap_content"
+	     android:id="@+id/txtimei"
+	     style="@style/listTitle"
+	     android:text="IMEI"
+	     android:layout_marginLeft="6dp"
+		/>
+	    </LinearLayout>
+	    
+	    
+	    
+	    <LinearLayout
+	    android:layout_height="wrap_content"
+   		android:layout_width="fill_parent"
+   		android:orientation="horizontal"
+   		android:gravity="center"
+		android:layout_gravity="center"
+		android:layout_marginTop="10dp"
+	    >
+	    <TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="地址:"
+	    style="@style/listTitle"
+	    >
+	    
+	    </TextView>
+	    
+	    <EditText 
+	   		android:layout_height="wrap_content"
+	   		android:layout_width="fill_parent"
+	   		android:id="@+id/ip"
+	   		android:hint="IP"
+	   		android:singleLine="true"
+	   		
+	   		android:inputType="none"
+	   		style="@style/editTextStyle"
+	   		android:layout_marginLeft="6dp"
+	   		/>	
+	    </LinearLayout>
+
+       <LinearLayout
+	    android:layout_height="wrap_content"
+   		android:layout_width="fill_parent"
+   		android:orientation="horizontal"
+   		
+	android:layout_marginTop="10dp"
+	    >
+	    <TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="端口:"
+	    style="@style/listTitle"
+	    android:gravity="center_vertical"
+	    android:layout_gravity="center_vertical"
+	    />
+	   <EditText 
+   		android:layout_height="wrap_content"
+   		android:layout_width="fill_parent"
+   		android:id="@+id/port"
+   		android:hint="端口"
+   		android:singleLine="true"
+   		android:layout_marginTop="8dip"
+   		android:numeric="integer"
+   		style="@style/editTextStyle"
+   		android:layout_marginLeft="6dp"
+   		/>
+	    </LinearLayout>
+
+	   
+	      <LinearLayout 
+	       android:layout_width="fill_parent"
+	       android:layout_height="wrap_content"
+	       android:orientation="horizontal"
+	       android:gravity="center"
+	       android:layout_gravity="center"
+	       android:layout_marginTop="20dp"
+	       >
+	       <Button 
+				 android:text="开启服务"
+	             android:layout_width="0dp"
+	             android:layout_weight="1"
+	             android:layout_height="wrap_content"	
+				 android:id="@+id/btnStart"
+				 android:textSize="16sp"
+				 android:textColor="#ffffff"
+				 android:background="@drawable/button"
+				 android:layout_margin="0dip"
+				 android:fromAlpha="0.0"
+				 android:toAlpha="0.0"
+		
+	         />
+	         
+	         <Button 
+				 android:text="停止服务"
+	             android:layout_width="0dp"
+	             android:layout_weight="1"
+	             android:layout_height="wrap_content"	
+				 android:id="@+id/btnStop"
+				 android:textSize="16sp"
+				 android:textColor="#ffffff"
+				 android:background="@drawable/button"
+				 android:layout_marginLeft="20dip"
+				 android:fromAlpha="0.0"
+				 android:toAlpha="0.0"
+		
+	         />
+	   </LinearLayout>
+	</LinearLayout>
+	
+
+</LinearLayout>

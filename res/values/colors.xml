@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="radiobg_press">#43859d</color>
+    <color name="radiobg_normal">#000000</color>
+    <color name="pagebgcolor">#d5d3d6</color>
+    <color name="listbg">#f3f3f3</color>
+    <color name="fontcolor">#3e3e3e</color>
+    <color name="tablecolor">#3993d1</color>
+    <color name="itembg">#f3f3f3</color>
+    <color name="bgfff">#ffffff</color>
+    <color name="selectphone">#2AA9EA</color>
+    <color name="wordcolor">#3e3e3e</color>
+    
+    <color name="white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+    <color name="blue">#ffccddff</color>
+    <color name="grey">#ff808080</color>
+    <color name="pls_talk_normal">#ff707277</color>
+    <color name="search_hint">#ffcccccc</color>
+</resources>

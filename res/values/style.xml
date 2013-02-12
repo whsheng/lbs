@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<style name="title">
+		<item name="android:textSize">20sp</item>
+		<item name="android:textColor">#ffffff</item>
+		<item name="android:fromAlpha">0.0</item>
+		<item name="android:toAlpha">0.0</item>
+	</style>
+	
+	<style name="leftright20" >	
+   	    <item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+  		<item name="android:orientation">vertical</item>
+		<item name="android:paddingLeft">10dip</item>
+		<item name="android:paddingRight">10dip</item>
+		<item name="android:fromAlpha">0.0</item>
+		<item name="android:toAlpha">0.0</item>
+   </style>
+   
+   
+   	 <style name="editTextStyle">
+	   <item name="android:textColorHint">@color/search_hint</item>
+	   <item name="android:background">@drawable/sms_embeded_text_editor_bg</item>
+	</style>
+	
+	<style name="listTitle">
+		<item name="android:textSize">18sp</item>
+		<item name="android:textColor">#3e3e3e</item>
+		<item name="android:fromAlpha">0.0</item>
+		<item name="android:toAlpha">0.0</item>
+	</style>
+</resources>
