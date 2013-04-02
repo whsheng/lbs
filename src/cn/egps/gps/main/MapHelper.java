@@ -63,69 +63,7 @@ public class MapHelper {
 		return manager.getLastKnownLocation(provider);
 	}
 	
-	/*
-	public GeoPoint getGeoPointByLocation(Location location){
-		GeoPoint point=null;
-		if(null!=location){
-			int lat=(int) ((int)location.getLatitude()*1E6);
-			int lng=(int) (location.getLongitude()*1E6);
-			point=new GeoPoint(lat,lng);
-		}
-		return point;
-	}
-	
-	public GeoPoint getLatLngFromAddr(String address){
-		Geocoder coder=new Geocoder(context, Locale.CHINA);
-		GeoPoint point=null;
-		try {
-			List<Address> list=coder.getFromLocationName(address, 1);
-			if(!list.isEmpty()){
-				Address add=list.get(0);
-				int lat=(int) (add.getLatitude()*1E6);
-				int lng=(int)(add.getLongitude()*1E6);
-				point=new GeoPoint(lat,lng);
-			}
-		} catch (IOException e) {
-			Log.e(Common.TAG,e.getMessage());
-		}
-		return point;
-	}
-	
-	public static GeoPoint getLatLngFromAddress(String address) {
-		String param=URLEncoder.encode(address);
-		String strUrl="http://maps.google.com/maps/geo?q="+param+"&output=xml&oe=utf8&sensor=true&key="+mapKey;
-		GeoPoint point=null;
-		try{
-			HttpClient client=new DefaultHttpClient();
-			HttpResponse response=client.execute(new HttpGet(strUrl));
-			StatusLine status=response.getStatusLine();
-			if(HttpStatus.SC_OK==status.getStatusCode()){
-				String result=EntityUtils.toString(response.getEntity(),Common.ENCODING);
-				XmlPullParserFactory factory=XmlPullParserFactory.newInstance();
-				XmlPullParser parser=factory.newPullParser();
-				StringReader reader=new StringReader(result);
-				parser.setInput(reader);
-				int eventType=parser.getEventType();
-				while(eventType!=XmlPullParser.END_DOCUMENT){
-					if(eventType==XmlPullParser.START_TAG){
-						if("coordinates".equalsIgnoreCase(parser.getName())){
-							String latLng=parser.nextText().trim();
-							String[] tempLatLng=latLng.split(",");
-							int lat=(int) (Double.valueOf(tempLatLng[1])*1E6);
-							int lng=(int) (Double.valueOf(tempLatLng[0])*1E6);
-							point=new GeoPoint(lat,lng);
-							break;
-						}
-					}
-					eventType=parser.next();
-				}
-				reader.close();
-			}
-		}catch(Exception ex){
-			Log.e(Common.TAG, ex.getMessage());
-		}
-		return point;
-	}*/
+
 	
 	public static String getAddressByGeoPoint(String latlng){
 		//String latlng=location.getLatitude()+","+location.getLongitude();
@@ -139,11 +77,8 @@ public class MapHelper {
                   HttpConnectionParams.CONNECTION_TIMEOUT, 15000);// Á¬½Ó³¬Ê±
 		try {
 			HttpGet get=new HttpGet(url);
-			//get.addHeader("User-Agent", " Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; InfoPath.3; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)");
 			get.addHeader("Accept-Language", "zh-cn");
-			//get.addHeader("Content-Type","text/xml;charset=UTF-8");
 			get.addHeader("Accept","*/*");
-			//get.addHeader("Accept-Encoding","gzip, deflate");
 			
 			HttpResponse response=client.execute(get);
 			StatusLine status=response.getStatusLine();

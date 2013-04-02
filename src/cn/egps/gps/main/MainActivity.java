@@ -36,15 +36,10 @@ public class MainActivity extends Activity implements Button.OnClickListener{
         setContentView(R.layout.main);
         
         editIp=(EditText) findViewById(R.id.ip);
-        //editIp.setInputType(InputType.);
-
-        editPort=(EditText) findViewById(R.id.port);
-        
+        editPort=(EditText) findViewById(R.id.port);     
         txtImei=(TextView) findViewById(R.id.txtimei);
-        txtImei.setText(getIMEI());
-        
-        txtAddress=(TextView) findViewById(R.id.txtAddress);
-        
+        txtImei.setText(getIMEI());       
+        txtAddress=(TextView) findViewById(R.id.txtAddress);       
         btnStart=(Button) findViewById(R.id.btnStart);
         btnStart.setOnClickListener(this);
         btnStop=(Button) findViewById(R.id.btnStop);
@@ -98,7 +93,6 @@ public class MainActivity extends Activity implements Button.OnClickListener{
     private BroadcastReceiver receiver=new BroadcastReceiver(){
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			// TODO Auto-generated method stub
 			if(Constant.RECEIVEADDRESS.equals(intent.getAction())){
 				Bundle bundle=intent.getExtras();
 				LocationParams params=(LocationParams) bundle.getSerializable("location");

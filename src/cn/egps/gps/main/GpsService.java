@@ -69,7 +69,6 @@ public class GpsService extends Service {
 		
 		@Override
 		public void onStart(Intent intent, int startId) {
-			// TODO Auto-generated method stub
 			super.onStart(intent, startId);
 			//注册广播监听网络状态
 			try{
@@ -78,10 +77,6 @@ public class GpsService extends Service {
 				filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
 				context.registerReceiver(reciver, filter);
 				Log.e(Constant.TAG, "监听服务已启动");
-				
-				//TelephonyManager manager1=(TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-				//Log.e(Constant.TAG, "SSSSSSSSSSSSSSSSSSSSSSSSSSSS:"+manager1.getSubscriberId());
-				
 				getBaiduLocation();
 			}catch(Exception ex){
 				writeLog(Utils.printException(ex));
@@ -151,16 +146,20 @@ public class GpsService extends Service {
 					outStream.write(format(date.getHours()).getBytes());
 					outStream.write(format(date.getMinutes()).getBytes());
 					outStream.write(format(date.getSeconds()).getBytes());
+					//TOOD:这里收到的经纬度是百度0911，需再次转换成WGS-84
 					String lat=String.valueOf(params.getLat()).replace(".", "");
 					if(lat.length()<8){
 						lat=lat+"00000000".substring(0,8-lat.length());
 					}
 					outStream.write(lat.getBytes());
+					
 					String lng=String.valueOf(params.getLng()).replace(".", "");
 					if(lng.length()<9){
 						lng=lng+"000000000".substring(0,9-lng.length());
 					}
 					outStream.write(lng.getBytes());
+					
+					
 					outStream.write("6".getBytes());
 				
 					outStream.write(format(params.getSpeed()).getBytes());
@@ -221,7 +220,7 @@ public class GpsService extends Service {
 		
 		
 		private void openGps(){
-			boolean gpsEnabled = Settings.Secure.isLocationProviderEnabled( getContentResolver(), LocationManager.GPS_PROVIDER );
+			boolean gpsEnabled = Settings.Secure.isLocationProviderEnabled( getContentResolver(), LocationManager.GPS_PROVIDER );			
 		    if(gpsEnabled)
 		    {
 		    //关闭GPS
@@ -229,12 +228,8 @@ public class GpsService extends Service {
 		    }
 		    else
 		    {
-		     //打开GPS  www.2cto.com
 		     Settings.Secure.setLocationProviderEnabled( getContentResolver(), LocationManager.GPS_PROVIDER, true);
-
 		    }
-
-
 		}
 		
 		/**
@@ -248,7 +243,7 @@ public class GpsService extends Service {
 				mLocationClient = new LocationClient(this);
 		        LocationClientOption option = new LocationClientOption();
 		        option.setOpenGps(true);								//打开gps
-		        option.setCoorType("bd09ll");//bd09ll							//设置坐标类型为bd09ll
+		        option.setCoorType("gcj02");					       //设置坐标类型为gcj02
 		        option.setPriority(LocationClientOption.GpsFirst);	//设置网络优先
 		        option.setProdName("android_map");						//设置产品线名称
 		        option.setAddrType("detail");
@@ -276,7 +271,6 @@ public class GpsService extends Service {
 							
 							if(location.getLocType() == BDLocation.TypeGpsLocation){
 								params.setSpeed(location.getSpeed());
-								//Log.e(Constant.TAG, "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBB");
 								params.setAltitude(location.getAltitude());
 								params.setDirection(location.getDerect());
 								String latlng=location.getLatitude()+","+location.getLongitude();
@@ -292,8 +286,6 @@ public class GpsService extends Service {
 							params.setLac(cell.getLac());
 							Log.e(Constant.TAG, "baidu:  "+params.getLat()+"  "+params.getLng()+"   "+params.getSpeed()+"   "+params.getAltitude()
 									+"     "+params.getDirection());
-							//writeLog("baidu:  "+params.getLat()+"  "+params.getLng()+"   "+params.getSpeed()+"   "+params.getAltitude()
-							//		+"     "+params.getDirection());
 							if(checkNerWork()){
 								sendData(params);
 							}else{
@@ -312,8 +304,7 @@ public class GpsService extends Service {
 			        	//return ;
 			        }
 				};
-		        mLocationClient.registerLocationListener(baiduListener);
-				
+		        mLocationClient.registerLocationListener(baiduListener);			
 		        mLocationClient.start();
 		        mLocationClient.requestLocation();
 		        BDLocation location= mLocationClient.getLastKnownLocation();
@@ -347,19 +338,14 @@ public class GpsService extends Service {
 		    if(Utils.isNullOrEmpty(bestProvider)){
 		    	
 		     }else{
-		    	 //Location location = manager.getLastKnownLocation(bestProvider);
-		 	     //return location;
 		    	 manager.requestLocationUpdates(bestProvider, 5*6000, 8, ll);    //绑定事件监听  
 		     }
-		     //manager.requestLocationUpdates(bestProvider,5000,20, new MyLocationListener());
 		}
 		
 		   LocationListener ll = new LocationListener() {
 
 			@Override
 			public void onLocationChanged(Location location) {
-				// TODO Auto-generated method stub
-				//manager.getLastKnownLocation(provider)
 				String latlng=location.getLatitude()+","+location.getLongitude();
 				String address=MapHelper.getAddressByGeoPoint(latlng);
 				GsmCellLocation cell=MapHelper.getCellId(GpsService.this);
@@ -418,7 +404,6 @@ public class GpsService extends Service {
 			 * 打开网络
 			 */
 			 protected void openNetwork(){
-				 //ConnectivityManager mConnectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 				  Object[] arg = null;
 				  try {
 					  
@@ -428,7 +413,6 @@ public class GpsService extends Service {
 						   invokeBooleanArgMethod("setMobileDataEnabled", true);
 					   }
 				  }catch (Exception e) {
-					  // TODO Auto-generated catch block
 					  e.printStackTrace();
 				  }
 			 }
@@ -467,15 +451,5 @@ public class GpsService extends Service {
 			            return method.invoke(mConnectivityManager, value);
 			    }
 			     
-			     
-			     
-			     
-			     
-			     /************************************/
-			     
-			     
-			     
-			     
-		    
-		    
+	    
 }
